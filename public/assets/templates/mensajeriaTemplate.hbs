@@ -1,0 +1,25 @@
+
+<div id="tablaMensajes">
+    {{#if mensajes.length}}
+        {{#each mensajes}}
+        <div class="mensajeria">
+            <p>{{ this.msj.emailForm }}</p>
+            <p>{{ this.msj.msjForm }}</p>
+            <p>{{ this.createDate }}</p>
+        </div>
+        {{/each}}
+    {{/if}}
+</div>
+
+
+
+<style>
+    .titulo {
+        text-align: center;
+    }
+    .Mensajeria {
+        display: flex ;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
