@@ -1,225 +1,99 @@
 
-import { normalizr } from 'normalizr';
-import { util } from 'util';
 
-const normalizar = normalizr.normalize;
-const desnormalizar = normalizr.denormalize;
 
-// Data
-const empresa = {
-    id: '1000',
-    nombre: 'Coderhouse',
-    gerente: {
-        id: '2',
-        nombre: 'Pedro',
-        apellido: 'Mei',
-        DNI: '20442639',
-        direccion: 'CABA 457',
-        telefono: '1567811544',
-    },
-    encargado: {
-        id: '3',
-        nombre: 'Pablo',
-        apellido: 'Blanco',
-        DNI: '20442640',
-        direccion: 'CABA 458',
-        telefono: '1567811545',
-    },
-    empleados: [
+import { normalize, denormalize, schema } from 'normalizr';
+import util from 'util';
+
+
+
+const originalData = {
+    id: "4444",
+    posts: [
         {
-            id: '1',
-            nombre: 'Nicole',
-            apellido: 'Gonzalez',
-            DNI: '20442638',
-            direccion: 'CABA 456',
-            telefono: '1567811543',
+            id: "425",
+            autor: { id: "1", nombre: "Fernando", apellido: "Gutierrez", DNI: "76343544", direccion: "Rosario 3773", telefono: "3733546246" },
+            titulo: "titulo 1",
+            comentarios: [{ id: "633", comentador: { id: "2", nombre: "Martina", apellido: "Buhajeruk", DNI: "43696382", direccion: "Mendoza 3496", telefono: "9466463542" } }, {
+                id: "737", comentador: { id: "3", nombre: "Martin", apellido: "Ould ahmed", DNI: "647218223", direccion: "Bahréin 2556", telefono: "4568245336" }
+            }]
+        },
+        {
+            id: "633",
+            autor: { id: "2", nombre: "Martina", apellido: "Buhajeruk", DNI: "43696382", direccion: "Mendoza 3496", telefono: "9466463542" },
+            titulo: "titulo 2",
+            comentarios: [{ id: "425", comentador: { id: "1", nombre: "Fernando", apellido: "Gutierrez", DNI: "76343544", direccion: "Rosario 3773", telefono: "3733546246" } }, {
+                id: "737", comentador: { id: "3", nombre: "Martin", apellido: "Ould ahmed", DNI: "647218223", direccion: "Bahréin 2556", telefono: "4568245336" }
+            }]
+        },
+        {
+            id: "737",
+            autor: { id: "3", nombre: "Martin", apellido: "Ould ahmed", DNI: "647218223", direccion: "Bahréin 2556", telefono: "4568245336" },
+            titulo: "titulo 3",
+            comentarios: [{ id: "633", comentador: { id: "2", nombre: "Martina", apellido: "Buhajeruk", DNI: "43696382", direccion: "Mendoza 3496", telefono: "9466463542" } }, {
+                id: "425", comentador: { id: "1", nombre: "Fernando", apellido: "Gutierrez", DNI: "76343544", direccion: "Rosario 3773", telefono: "3733546246" }
+            }]
         }
-    ],
-};
-
-const gerenteSchema = new normalizr.schema.Entity('gerente');
-const encargadoSchema = new normalizr.schema.Entity('encargado');
-const empleadosSchema = new normalizr.schema.Entity('empleados', {
-    gerente: gerenteSchema,
-    encargado: encargadoSchema
-});
-
-const empresaSchema = new normalizr.schema.Entity('empresa', [{
-    empleados: [empleadosSchema]
-}]);
-// obj - json
-// schema
+    ]
+}
 
 
+const usuario = new schema.Entity('usuarios')
 
-const data_normalizada = normalizar(empresa, empresaSchema);
-// console.log('Data normalizada', JSON.stringify(data_normalizada));
+const comentario = new schema.Entity('comentarios', {
+    comentador: usuario
+})
 
+const publicacion = new schema.Entity('publicaciones', {
+    autor: usuario,
+    comentarios: [comentario]
+})
 
-// ○ El primer parámetro es el objeto a inspeccionar.
-// ○ El segundo parámetro muestra todas las propiedades ocultas y no ocultas.
-// ○ El tercer parámetro indica hasta qué profundidad es analizado el objeto.
-// ○ El cuarto parámetro colorea la salida.
-console.log('Data normalizada', data_normalizada)
-console.log('Length data normalizada', JSON.stringify(data_normalizada).length);
-console.log('-----------------')
+const articulos = new schema.Entity('articulos', {
+    publicaciones: [publicacion]
+})
 
-const data_denormalizada = desnormalizar(data_normalizada.result, empresaSchema, data_normalizada.entities);
-console.log('Data desnormalizada', util.inspect(data_denormalizada, false, 12, true))
-console.log('Length data desnormalizada', JSON.stringify(data_denormalizada).length);
+const datosNormalizados = normalize(originalData, articulos)
+console.log('------------------ Data -- Normalizada ------------------');
+console.log(datosNormalizados);
 
+const datosDesnormalizados = denormalize(datosNormalizados.result, articulos, datosNormalizados.entities)
+console.log('------------------ Data -- Denormalizada ------------------');
+console.log(datosDesnormalizados);
 
-// Normalizar JSON
-// Normalizar la estructura del objeto en formato JSON empresa.json
-// (disponible en la carpeta de la clase) que describe el organigrama de una empresa. El gerente y el encargado figuran en el array de empleados de la empresa.
-// Imprimir por consola el objeto normalizado y la longitud del objeto original y del normalizado. Comparar los resultados.
-// Nota: En adelante, utilizar la siguiente función 'print' para imprimir el contenido de un objeto:
+const elementoNormal = parseInt(JSON.stringify(datosNormalizados).length)
+const elementOriginal = parseInt(JSON.stringify(datosDesnormalizados).length)
 
+console.log(JSON.stringify(originalData).length);
+console.log(JSON.stringify(datosDesnormalizados).length);
+console.log(JSON.stringify(datosNormalizados).length);
 
+function obtenerPorcentaje(primerElemento, segundoElemento) {
+    const porcentaje = ((primerElemento / segundoElemento * 100) - 100).toFixed(2)
+    console.log(`El porcentaje de compresion fue del ${porcentaje}%`);
+}
+
+obtenerPorcentaje(elementoNormal, elementOriginal)
 
 
 
-
-//------------------------------------------------------------------------------------------------------------------//
-
+// --------------------------------------------------------------------------------------------------//
 
 
-
-
-
-
-// import {normalizr} from 'normalizr;
-// const normalizar = normalizr.normalize;
-// const desnormalizar = normalizr.denormalize;
-// import { util } from 'util';
-// import {holding} from '../holding.json';
-// const usersSchema = new normalizr.schema.Entity('users');
-
-// const empresaSchema = new normalizr.schema.Entity('empresa', {
-//     gerente: usersSchema,
-//     encargado: usersSchema,
-//     empleados: [usersSchema]
-
-// });
-// const holdingSchema = new normalizr.schema.Entity('holding', {
-//     empresas: [empresaSchema]
-// });
-
-// const data_normalizada = normalizar(holding, holdingSchema);
-// const utils = (objeto) => {
-//     console.log(util.inspect(objeto, false, 12, true));
-// }
-// utils(data_normalizada);
-// console.log('Antes: ', JSON.stringify(holding).length);
-// console.log('Después: ', JSON.stringify(data_normalizada).length);
-
-
-
-
-// // Normalización y desnormalización con redundancia
-// // Dado el objeto en formato JSON holding.json (disponible en la carpeta de la clase) que representa la información correspondiente a un grupo de empresas:
-// // Definir el esquema de normalización.
-// // Obtener el objeto normalizado e imprimirlo por consola.
-// // Desnormalizar el objeto obtenido en el punto anterior.
-// // Imprimir la longitud del objeto original, del normalizado y del desnormalizado
-// // Imprimir el porcentaje de compresión del proceso de normalización.
-// // Comparar y analizar los resultados.
-
-
-
-
-
-
-//------------------------------------------------------------------------------------------------------------------//
-
-
-
-
-// // redundancia son
-// // empresa
-// // empresados
-// // personas
-// const normalizr = require("normalizr");
-// const normalizar = normalizr.normalize;
-// const desnormalizar = normalizr.denormalize;
-// const holding = require("../holding.json");
-// const util = require("util");
 // const mostrar = (objeto) => {
 //     console.log(util.inspect(objeto, false, 12, true));
 // };
-// const getLength = (obj) => JSON.stringify(obj).length;
-// const empleado = new normalizr.schema.Entity("empleado");
-// const empresa = new normalizr.schema.Entity("empresa", {
-//     empleados: [empleado],
-//     gerente: empleado,
-//     encargado: empleado,
-// });
-// const holdingSchema = new normalizr.schema.Entity("holding", {
-//     empresas: [empresa],
-// });
 
-// const holdingNormalizado = normalizar(holding, holdingSchema);
-// const holdingDesnormalizado = desnormalizar(
-//     holdingNormalizado.result,
-//     holdingSchema,
-//     holdingNormalizado.entities
-// );
-// const lengthNormalizado = getLength(holdingNormalizado);
-// const lengthDesormalizado = getLength(holdingDesnormalizado);
-// const porcentajeReducido = (lengthNormalizado * 100) / lengthDesormalizado
-// console.log("NORMALIZADO: ", lengthNormalizado);
-// console.log("DESNORMALIZADO: ", lengthDesormalizado);
-// console.log("PORCENTAJE REDUCIDO: ", porcentajeReducido);
+
 // mostrar(holdingNormalizado);
 
 
 
 
+// --------------------------------------------------------------------------------------------------//
 
-//------------------------------------------------------------------------------------------------------------------//
+// CAMBIAR ID NORMALIZR
+// const schemaAuthor = new schema.Entity('author', { ...}, { idAttribute: 'email' });
 
 
-
-
-
-// const originData = require('../ejemplo_vivo.json')
-// const normalz = require('normalizr')
-// const normalizar = normalz.normalize
-// const desnormalizar = normalz.denormalize
-// const util = require('util');
-
-// const userSchema = new normalz.schema.Entity('users')
-// // {
-// //     "id": string,
-// //     "nombre": string,
-// //     "apellido": string,
-// //     "DNI": string,
-// //     "direccion": string,
-// //     "telefono": string
-// // }
-// const commentSchema = new normalz.schema.Entity('comments', {
-//     commenter: userSchema
-// })
-// // {"commenter": userSchema}
-// const articleSchema = new normalz.schema.Entity('article', {
-//     author: userSchema,
-//     comments: [commentSchema]
-// })
-
-// // "author":userSchema,
-// // "comments": [commentSchema]
-// const postSchema = new normalz.schema.Entity('posts', {
-//     posts: [articleSchema]
-// })
-
-// const mostar = (obj) => console.log = ('-------') + console.log(util.inspect(obj, false, 12, true));
-
-// const objNormalizado = normalizar(originData, postSchema)
-
-// const objDesnormalizado = desnormalizar(objNormalizado.result, postSchema, objNormalizado.entities)
-
-// console.log('CANTIDAD DE CARACTERES ORIGINAL: ', JSON.stringify(originData).length)
-// console.log('CANTIDAD DE CARACTERES DESNORMALIZADO: ', JSON.stringify(objDesnormalizado).length)
-// console.log('CANTIDAD DE CARACTERES NORMALIZADO: ', JSON.stringify(objNormalizado).length)
-
-// mostar(objNormalizado)
+// normalizr video youtube
+// https://www.youtube.com/watch?v=nuZSmT5ISNk
