@@ -16,11 +16,7 @@
 
 
 
-// CAMBIAR ID NORMALIZR
-// const schemaAuthor = new schema.Entity('author', { ...}, { idAttribute: 'email' });
 
-
-// FILESYSTEM: const MENSAJES_ARCHIVONOMBRE = "mensajes";
 
 
 //----------------------------------------------------------------------------------------------------------//
@@ -33,7 +29,6 @@
 
 //tabla mensajes
 
-//CREATE TABLE `primerabasedatos`.`mensajes` (`id` INT NOT NULL AUTO_INCREMENT , `email` VARCHAR(128) NOT NULL , `texto` TEXT NOT NULL , `marca de tiempo` DATE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+// CREATE TABLE `primerabasedatos`.`mensajes` (`id` INT NOT NULL AUTO_INCREMENT , `email` VARCHAR(128) NOT NULL , `texto` TEXT NOT NULL , `marca de tiempo` DATE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 
-//----------------------------------------------------------------------------------------------------------//

@@ -1,9 +1,9 @@
 
-import { contenedorFirebase } from "../../Contenedores/index.js";
-import { config } from "../../Configuracion/index.js";
+import { ContenedorFirebase } from "../../Contenedores/index.js";
+import { config } from "../../Configuracion/config.js";
 
 
-export class mensajesFirebase extends contenedorFirebase {
+export class MensajesFirebase extends ContenedorFirebase {
     constructor() {
         super(config.DATABASES.firebase);
     }

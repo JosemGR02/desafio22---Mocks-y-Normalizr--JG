@@ -79,7 +79,3 @@ socket.on('todos los mensajes', todosMsgs => {
     mensajesRenderizados(todosMsgs)
 })
 
-
-
-
-

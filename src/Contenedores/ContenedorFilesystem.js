@@ -1,18 +1,18 @@
 
 import fs from "fs";
 
-class ContenedorFilesystem {
+class ContenedorFileSystem {
     constructor(archivoNombre) {
-        this.filePath = `./src/BaseDatos/filesystem/${archivoNombre}.json`;
+        this.filePath = `./src/BaseDatos/${archivoNombre}.json`;
     }
 
     async obtenerTodos() {
         try {
-        const archivo = await fs.promises.readFile(this.filePath, "utf8");
-        const elementos = JSON.parse(archivo);
+            const archivo = await fs.promises.readFile(this.filePath, "utf8");
+            const elementos = JSON.parse(archivo);
 
-        return elementos;
-        } 
+            return elementos;
+        }
         catch (error) {
             if (error.code === "ENOENT") {
                 await fs.promises.writeFile(this.filePath, JSON.stringify([], null, 3));
@@ -24,17 +24,17 @@ class ContenedorFilesystem {
 
     async guardar(elemento) {
         try {
-        const elementos = await this.obtenerTodos();
+            const elementos = await this.obtenerTodos();
 
-        const id = elementos.length === 0 ? 1 : elementos[elementos.length - 1].id + 1;
+            const id = elementos.length === 0 ? 1 : elementos[elementos.length - 1].id + 1;
 
-        elemento.id = id;
+            elemento.id = id;
 
-        elementos.push(elemento);
+            elementos.push(elemento);
 
-        await fs.promises.writeFile(this.filePath, JSON.stringify(elementos, null, 3));
+            await fs.promises.writeFile(this.filePath, JSON.stringify(elementos, null, 3));
 
-        return elemento;
+            return elemento;
         } catch (error) {
             console.log(error, "no se pudo guardar el elemento seleccionado");
         }
@@ -42,11 +42,11 @@ class ContenedorFilesystem {
 
     async obtenerXid(id) {
         try {
-        const elementos = await this.obtenerTodos();
+            const elementos = await this.obtenerTodos();
 
-        const elementoEncontrado = elementos.find((elemento) => elemento.id == id);
+            const elementoEncontrado = elementos.find((elemento) => elemento.id == id);
 
-        return elementoEncontrado;
+            return elementoEncontrado;
         } catch (error) {
             console.log(error, "no se pudo obtener el elemento seleccionado");
         }
@@ -54,25 +54,25 @@ class ContenedorFilesystem {
 
     async actualizar(id, nuevosdatos) {
         try {
-        const elementos = await this.obtenerTodos();
+            const elementos = await this.obtenerTodos();
 
-        const elementoEncontradoIndex = elementos.findIndex(
-            (elemento) => elemento.id == id
-        );
+            const elementoEncontradoIndex = elementos.findIndex(
+                (elemento) => elemento.id == id
+            );
 
-        if (elementoEncontradoIndex === -1) return null;
+            if (elementoEncontradoIndex === -1) return null;
 
-        const elementoEncontrado = elementos[elementoEncontradoIndex];
+            const elementoEncontrado = elementos[elementoEncontradoIndex];
 
-        elementos[elementoEncontradoIndex] = {
-            ...elementoEncontrado,
-            ...nuevosdatos,
-        };
+            elementos[elementoEncontradoIndex] = {
+                ...elementoEncontrado,
+                ...nuevosdatos,
+            };
 
-        await fs.promises.writeFile(this.filePath, JSON.stringify(elementos, null, 3));
+            await fs.promises.writeFile(this.filePath, JSON.stringify(elementos, null, 3));
 
-        return elementoEncontrado;
-        } 
+            return elementoEncontrado;
+        }
         catch (error) {
             console.log(error, "no se pudo actualizar el elemento seleccionado");
         }
@@ -80,30 +80,30 @@ class ContenedorFilesystem {
 
     async eliminarXid(id) {
         try {
-        const elementos = await this.obtenerTodos();
+            const elementos = await this.obtenerTodos();
 
-        const elementoEncontrado = elementos.find((elemento) => elemento.id == id);
+            const elementoEncontrado = elementos.find((elemento) => elemento.id == id);
 
-        if (!elementoEncontrado) return "error, elemento no encontrado";
+            if (!elementoEncontrado) return "error, elemento no encontrado";
 
-        const filtrarElementos = elementos.filter((elemento) => elemento.id != id);
+            const filtrarElementos = elementos.filter((elemento) => elemento.id != id);
 
-        await fs.promises.writeFile(this.filePath, JSON.stringify(filtrarElementos, null, 3));
-        } 
+            await fs.promises.writeFile(this.filePath, JSON.stringify(filtrarElementos, null, 3));
+        }
         catch (error) {
-            console.log(error, "no se pudo eliminar el elemento seleccionado" );
+            console.log(error, "no se pudo eliminar el elemento seleccionado");
         }
     }
 
     async eliminarTodos() {
         try {
-        await fs.promises.writeFile(this.filePath, JSON.stringify([], null, 3));
-        } 
+            await fs.promises.writeFile(this.filePath, JSON.stringify([], null, 3));
+        }
         catch (error) {
             console.log(error, "no se pudo eliminar todos los elementos");
         }
     }
 }
 
-export { ContenedorFilesystem };
+export { ContenedorFileSystem };
 

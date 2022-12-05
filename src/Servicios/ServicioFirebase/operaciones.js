@@ -25,8 +25,3 @@ conectar().then(baseDatos => {
     )
         .then(datos => console.log(datos))
 })
-
-
-
-// const ecommerce = [ 'yellow','red','blue']
-// ecommerce.forEach( async (color) =>   await contenedorFirebase.create(collections,{color}) )

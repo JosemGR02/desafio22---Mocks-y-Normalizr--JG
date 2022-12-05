@@ -1,7 +1,7 @@
 
-export { mensajesMongoBD } from "./MensajesMongoBD.js";
-export { mensajesFilesystem } from "./MensajesFilesystem.js";
-export { mensajesMemoria } from "./MensajesMemoria.js";
-export { mensajesFirebase } from "./MensajesFirebase.js";
-
+export { MensajesMongoBD } from "./mensajesMongoBD.js";
+export { MensajesFilesystem } from "./mensajesFilesystem.js";
+export { MensajesMemoria } from "./mensajesMemoria.js";
+export { MensajesFirebase } from "./mensajesFirebase.js";
+export { MensajesChat } from "./mensajesChat.js";
 

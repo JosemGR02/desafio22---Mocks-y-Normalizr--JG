@@ -3,10 +3,10 @@
 import express from "express";
 import { Server as ServidorHttp } from "http";
 import { Server as ServidorIO } from "socket.io";
-import { daoMensajes, daoProductos } from "./Dao/index.js";
+import { DaoMensaje, DaoProducto, DaoCarrito, DaoChat } from "./Dao/index.js";
 import handlebars from "express-handlebars";
-import { errorMiddleware } from './Middleware/error_middleware.js'
-import { ruta } from "./Rutas/index.js";
+import { errorMiddleware } from './Middlewares/index.js';
+import { RutaCarrito, RutaProductosTest, RutaProducto } from "./Rutas/index.js";
 
 
 // daysjsa
@@ -40,8 +40,10 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 
-//Ruta
-app.use('/api', ruta)
+//Rutas
+app.use('/api/productos', RutaProducto)
+app.use('/api/carrito', RutaCarrito)
+app.use('/api/productos-test', RutaProductosTest)
 
 
 //Servidor
@@ -69,12 +71,12 @@ io.on('connection', socket => {
 
 // enviar todos
 const enviarTodosProds = async (socket) => {
-    const todosProds = await daoProductos.obtenerTodos()
+    const todosProds = await DaoProducto.obtenerTodos()
     io.sockets.emit('todos los productos', todosProds)
 }
 
 const enviarTodosMsjs = async (socket) => {
-    const todosMsjs = await daoMensajes.obtenerTodos()
+    const todosMsjs = await DaoMensaje.obtenerTodos()
     io.sockets.emit('todos los mensajes', todosMsjs)
 }
 
@@ -86,9 +88,9 @@ const nuevoMensaje = async (socket, io, nuevoMsj) => {
     const fecha = new Date()
     const fechaFormateada = dayjs(fecha).format('DD/MM/YYYY hh:mm:ss')
     console.log("fecha formateada", fechaFormateada)
-    await daoMensajes.guardar({ msj: nuevoMsj, createDate: `${fechaFormateada} hs` })
+    await DaoMensaje.guardar({ msj: nuevoMsj, createDate: `${fechaFormateada} hs` })
 
-    const todosMsjs = await daoMensajes.obtenerTodos()
+    const todosMsjs = await DaoMensaje.obtenerTodos()
     io.sockets.emit('todos los mensajes', todosMsjs)
 }
 
@@ -96,10 +98,14 @@ const nuevoMensaje = async (socket, io, nuevoMsj) => {
 // nuevo producto
 
 const nuevoProducto = async (socket, io, nuevoProd) => {
-    await daoProductos.guardar(nuevoProd)
-    const todosProds = await daoProductos.obtenerTodos()
+    await DaoProducto.guardar(nuevoProd)
+    const todosProds = await DaoProducto.obtenerTodos()
     io.sockets.emit('todos los productos', todosProds)
 }
+
+
+
+//----------------------------------------------------------------------------------------------------------//
 
 
 
@@ -111,12 +117,6 @@ const nuevoProducto = async (socket, io, nuevoProd) => {
 //        "text": "hola",
 //        "timestamp": "24/10/2022 19:14:46",
 //        "id": 1
-//     },
-//     {
-//        "email": "alan@filesystem.com",
-//        "text": "hola",
-//        "timestamp": "8/11/2022 20:22:26",
-//        "id": 2
 //     }
 //  ]
 
@@ -132,57 +132,5 @@ const nuevoProducto = async (socket, io, nuevoProd) => {
 //       "identificación" : 1
 //     }
 //   ]
-
-
-
-
-/////////////////////////////////////////////////////////////////////////
-
-
-// knex conjunto datos
-
-
-// const products = [
-//     {
-//       title: "mac m1",
-//       price: "123",
-//       thumbnail:
-//         "https://www.apple.com/la/mac/why-mac/images/overview/hero__dg0dsnic3gia_large.png",
-//     },
-//     {
-//       title: "mac m2",
-//       price: "123",
-//       thumbnail:
-//         "https://www.apple.com/la/mac/why-mac/images/overview/hero__dg0dsnic3gia_large.png",
-//     },
-//     {
-//       title: "mac m1 pro",
-//       price: "123",
-//       thumbnail:
-//         "https://www.apple.com/la/mac/why-mac/images/overview/hero__dg0dsnic3gia_large.png",
-//     },
-//   ];
-
-//   const messages = [
-//     {
-//       id: 1,
-//       email: "alan@jsx.com",
-//       text: "Hola!!!! ",
-//       timestamp: "15/7/2022 19:11:14",
-//     },
-//     {
-//       id: 2,
-//       email: "alan@jsx.com",
-//       text: "¿Cómo están??",
-//       timestamp: "15/7/2022 19:11:26",
-//     },
-//     {
-//       id: 3,
-//       email: "32140@jsx.com",
-//       text: "Avanzandoooo todos juntos 😎",
-//       timestamp: "15/7/2022 19:11:51",
-//     },
-//   ];
-
 
 

@@ -1,9 +1,9 @@
 
-import { contenedorFileSystem } from "../../Contenedores/index.js";
-import { config } from "../../Configuracion/index.js";
+import { ContenedorFileSystem } from "../../Contenedores/index.js";
+import { config } from "../../Configuracion/config.js";
 
 
-export class mensajesFilesystem extends contenedorFileSystem {
+export class MensajesFilesystem extends ContenedorFileSystem {
     constructor() {
         super(config.DATABASES.filesystem.MENSAJES_ARCHIVONOMBRE);
     }

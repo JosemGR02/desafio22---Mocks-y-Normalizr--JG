@@ -1,6 +1,5 @@
 
-import { crearProductoFake } from '../Utilidades/mock_utils.js';
-
+import { crearProductosFake } from '../../Utilidades/mocks-utils/faker_utils.js';
 
 class mockServicio {
     constructor() {
@@ -17,36 +16,32 @@ class mockServicio {
     }
     populate(limite = 5) {
         for (let index = 1; index < limite; index++) {
-            this.insert(crearProductoFake())
+            this.insert(crearProductosFake())
         }
+    }
+    actualizar(id, nuevosdatos) {
+        const itemIndex = this.items.findIndex((item) => item.id == id);
+
+        if (itemIndex === -1) return null;
+
+        const itemEncontrado = this.items[itemIndex];
+
+        this.items[itemIndex] = {
+            ...this.items[itemIndex],
+            ...nuevosdatos,
+        };
+
+        return this.items[itemIndex];
+    }
+    eliminar() {
+        this.items.filter((item) => item.id != id);
+        return { success: true };
     }
 
 }
 export { mockServicio }
 
 
-
-//----------------------------------------------------------------------------------------------------------//
-
-
-// import { productoFake } from "../Utilidades/mock_utils";
-
-// class servicioMock {
-//     items
-//     constructor() { }
-//     obtenerTodos(qty = 5) {
-//         this.items = [];
-//         for (let i = 1; i <= qty; i++) {
-//             const nuevoItem = productoFake();
-//             this.items.push(nuevoItem);
-//         }
-//         return this.items;
-//     }
-// }
-
-// export { servicioMock };
-
-//FIREBASE https://console.firebase.google.com/u/0/project/basedatosjosegomez/firestore/data/~2Fproductos~2F3AEratHZs4kjhyCVwAo0?hl=es-419&view=panel-view
 
 
 

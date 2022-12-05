@@ -1,5 +1,5 @@
 
-export { contenedorFilesystem } from "./ContenedorFilesystem.js";
-export { contenedorMemoria } from "./ContenedorMemoria.js";
-export { contenedorFirebase } from "./ContenedorFirebase.js";
-export { contenedorMongoBD } from "./ContenedorMongoBD.js";
+export { ContenedorFileSystem } from "./contenedorFileSystem.js";
+export { ContenedorMemoria } from "./contenedorMemoria.js";
+export { ContenedorFirebase } from "./contenedorFirebase.js";
+export { ContenedorMongoBD } from "./contenedorMongoBD.js";

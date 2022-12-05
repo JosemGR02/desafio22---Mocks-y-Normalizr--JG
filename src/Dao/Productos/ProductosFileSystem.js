@@ -1,10 +1,10 @@
 
 
-import { contenedorFileSystem } from "../../Contenedores/index.js";
-import { config } from "../../Configuracion/index.js";
+import { ContenedorFileSystem } from "../../Contenedores/index.js";
+import { config } from "../../Configuracion/config.js";
 
 
-export class productosFileSystem extends contenedorFileSystem {
+export class ProductosFileSystem extends ContenedorFileSystem {
     constructor() {
         super(config.DATABASES.filesystem.PRODUCTOS_ARCHIVONOMBRE);
     }

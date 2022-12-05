@@ -1,6 +1,6 @@
 
 
-import { contenedorMemoria } from "../../Contenedores/index.js";
+import { ContenedorMemoria } from "../../Contenedores/index.js";
 
 
-export class mensajesMemoria extends contenedorMemoria { }
+export class MensajesMemoria extends ContenedorMemoria { }

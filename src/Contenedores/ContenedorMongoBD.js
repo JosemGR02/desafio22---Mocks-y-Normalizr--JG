@@ -1,7 +1,7 @@
 
 import mongoose from "mongoose";
 
-class contenedorMongoBD {
+class ContenedorMongoBD {
     constructor({ nombre, schema }) {
         this.model = mongoose.model(nombre, schema);
     }
@@ -35,4 +35,5 @@ class contenedorMongoBD {
     }
 }
 
-export { contenedorMongoBD };
+export { ContenedorMongoBD };
+

@@ -4,6 +4,7 @@ dotenv.config();
 
 
 const PRODUCTOS_ARCHIVONOMBRE = "productos";
+const CARRITOS_ARCHIVONOMBRE = "carritos";
 const MENSAJES_ARCHIVONOMBRE = "mensajes";
 
 const config = {
@@ -14,6 +15,7 @@ const config = {
     DATABASES: {
         filesystem: {
             PRODUCTOS_ARCHIVONOMBRE,
+            CARRITOS_ARCHIVONOMBRE,
             MENSAJES_ARCHIVONOMBRE,
         },
         mongo: {

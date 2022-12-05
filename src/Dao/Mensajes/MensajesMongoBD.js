@@ -1,20 +1,13 @@
 
-import { contenedorMongoBD } from "../../Contenedores/index.js";
-import { modeloCarrito } from "../../Modelos/index.js";
+import { ContenedorMongoBD } from "../../Contenedores/index.js";
+import { modeloMensajes } from "../../Modelos/index.js";
 
 
-export class mensajesMongoBD extends contenedorMongoBD {
+export class MensajesMongoBD extends ContenedorMongoBD {
     constructor() {
         super({
-            nombre: modeloCarrito.CartCollection,
-            schema: modeloCarrito.CartSchema,
+            nombre: modeloMensajes.ColeccionMensajes,
+            schema: modeloMensajes.EsquemaMensajes,
         });
     }
-
-    async obtenerXid(id) {
-        const respuesta = await this.model.findById(id).populate("productos");
-
-        return respuesta;
-    }
 }
-

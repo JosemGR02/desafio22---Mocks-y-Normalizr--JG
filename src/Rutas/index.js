@@ -1,12 +1,4 @@
 
-import { Ruta } from 'express';
-import { rutaProductos } from '../Controladores/mock_controladores.js';
-
-
-const ruta = Ruta();
-
-
-ruta.use("/productos", rutaProductos);
-
-export { ruta };
-
+export { RutaProducto } from "./productos/prod.js";
+export { RutaCarrito } from "./carritos/cart.js";
+export { RutaProductosTest } from "./productos/productos-test.js";

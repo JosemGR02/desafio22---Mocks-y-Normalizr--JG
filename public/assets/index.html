@@ -1,44 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/assets/styles/styles.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,600;1,700;1,900&display=swap"rel="stylesheet"/>
-        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        
-        <title>Desafio-clase12 - Websockets</title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,600;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
-    <body>
-        <h1 class="titulo">Formulario productos</h1>
-        <div class="nuevoProducto">
-            <form id="formularioProds">
-                <input type="text" name="titulo" placeholder="Titulo" class="nuevoProd_input" required/>
-                <input type="number" name="precio" placeholder="Precio" class="nuevoProd_input" required/>
-                <input type="text" name="imagen" placeholder="enlace imagen" class="nuevoProd_input" required/>
-                <button type="submit" id="nuevoProd_input">Subir</button>
-            </form>
-        </div>
+    <title>Desafio-clase12 - Websockets</title>
+  </head>
 
-        <div class="nuevoProducto" id="contenedorProductos"></div>
+  <body>
+    <h1 class="titulo">Formulario productos</h1>
+    <div class="nuevoProducto">
+      <form id="formularioProds">
+        <input
+          type="text"
+          name="titulo"
+          placeholder="Titulo"
+          class="nuevoProd_input"
+          required
+        />
+        <input
+          type="number"
+          name="precio"
+          placeholder="Precio"
+          class="nuevoProd_input"
+          required
+        />
+        <input
+          type="text"
+          name="imagen"
+          placeholder="Enlace imagen"
+          class="nuevoProd_input"
+          required
+        />
+        <input
+          type="text"
+          name="code"
+          placeholder="Código"
+          class="nuevoProd_input"
+          required
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Descripción"
+          class="nuevoProd_input"
+          required
+        />
+        <input
+          type="number"
+          name="stock"
+          placeholder="stock"
+          class="nuevoProd_input"
+          required
+        />
+        <button type="submit" id="nuevoProd_input">Guardar Producto</button>
+      </form>
+    </div>
 
-        <h1 class="titulo">Ingrese un nuevo mensaje</h1>
-        <div class="Mensajeria">
-            <form id="formularioMjs">
-                <input type="email" name="emailForm" placeholder="Email" id="msj_input" required/>
-                <input type="text" name="msjForm" placeholder="Mensaje" id="msj_input" required/>
-                <button type="submit" id="msj_input">Enviar</button>
-            </form>
-        </div>
-        <h2 class="titulo">Mensajeria:</h2>
-        <div class="Mensajeria" id="contenedorMensajes"></div>
+    <div class="nuevoProducto" id="contenedorProductos"></div>
 
-        <script src="/assets/js/cliente.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
-    </body>
+    <h1 class="titulo">Ingrese un nuevo mensaje</h1>
+    <div class="Mensajeria">
+      <form id="formularioMjs">
+        <!-- autor -->
+        <input
+          type="email"
+          name="emailForm"
+          placeholder="Email"
+          id="msj_input"
+          required
+        />
+        <input
+          type="text"
+          name="nombreForm"
+          placeholder="nombre"
+          id="msj_input"
+          required
+        />
+        <input
+          type="text"
+          name="apellidoForm"
+          placeholder="apellido"
+          id="msj_input"
+          required
+        />
+        <input
+          type="number"
+          name="edadForm"
+          placeholder="Edad"
+          id="msj_input"
+          required
+        />
+        <input
+          type="text"
+          name="aliasForm"
+          placeholder="Alias"
+          id="msj_input"
+          required
+        />
+        <input
+          type="text"
+          name="avatarForm"
+          placeholder="Avatar"
+          id="msj_input"
+          required
+        />
+        <!-- texto -->
+        <input
+          type="text"
+          name="msjForm"
+          placeholder="Mensaje"
+          id="msj_input"
+          required
+        />
+        <button type="submit" id="msj_input">Enviar</button>
+      </form>
+    </div>
+    <h2 class="titulo">Mensajeria:</h2>
+    <div class="Mensajeria" id="contenedorMensajes"></div>
+
+    <script src="/assets/js/cliente.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
+  </body>
 </html>

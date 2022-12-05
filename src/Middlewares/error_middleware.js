@@ -1,6 +1,6 @@
 
-import { HTTP_STATUS } from '../constants/api.constants';
-import { errorResponse } from '../utils/api.utils';
+import { HTTP_STATUS } from '../Constantes/api_contantes.js';
+import { respuestaError } from '../Utilidades/mocks-utils/index.js';
 
 
 const errorMiddleware = (error, solicitud, respuesta, next) => {
@@ -9,7 +9,7 @@ const errorMiddleware = (error, solicitud, respuesta, next) => {
     const errorDetails = error.message ? null : error;
     return respuesta
         .status(errorStatus)
-        .json(errorResponse(errorMessage, errorDetails));
+        .json(respuestaError(errorMessage, errorDetails));
 };
 
 export { errorMiddleware };

@@ -1,6 +1,6 @@
 
 import mongoose from "mongoose";
-import { config } from "../../Configuracion/index.js";
+import { config } from "../../Configuracion/config.js";
 
 
 const init = async () => {
@@ -12,32 +12,11 @@ const init = async () => {
         });
         console.log("La conexión con MongoBD establecida con exito");
 
-        await usuarios.insertMany({ nombre: 'Lucas', apellido: 'Blanco', dni: '30355874' }, { nombre: 'Maria', apellido: 'Garcia', dni: '29575148' }, { nombre: 'Tomás', apellido: 'Sierra', dni: '38654790' }, { nombre: 'Carlos', apellido: 'Fernández', dni: '26935670' }, { nombre: 'Carlos', apellido: 'Fernández', dni: '26935670' });
-
-        console.log(await usuarios.find())
     } catch (error) {
-        console.log(error);
+        console.log('ERROR AL CONECTARSE A MongoBD ', error)
     }
 };
 
 export const servicioMongoDB = {
     init,
 };
-
-
-// USUARIO
-// pepito
-
-// CONTRA
-// asd123
-
-// NOMBRE BD
-// ecommerce
-
-// URL
-// mongodb+srv://${user}:${pass}@cluster0.ycmrr2m.mongodb.net/?retryWrites=true&w=majority&dbName=${databaseName}
-
-
-// AGREGAR 1 +
-
-// { nombre: 'Federico', apellido: 'Pérez', dni: '320118321' }

@@ -1,8 +1,9 @@
 
-import { config } from "../Configuracion/index.js";
+import { config } from "../Configuracion/config.js";
 import { servicioMongoDB, conectar } from "../Servicios/index.js";
-import { mensajesMongoBD, mensajesFilesystem, mensajesFirebase, mensajesMemoria } from "./Mensajes/index.js";
-import { productosMongoBD, productosFileSystem, productosFirebase, productosMemoria } from "./Productos/index.js";
+import { MensajesMongoBD, MensajesFilesystem, MensajesFirebase, MensajesMemoria, MensajesChat } from "./Mensajes/index.js";
+import { CarritosMongoBD, CarritosFilesystem, CarritosFirebase, CarritosMemoria } from "./Carritos/index.js";
+import { ProductosMongoBD, ProductosFileSystem, ProductosFirebase, ProductosMemoria } from "./Productos/index.js";
 
 
 const obtenerDaoSeleccionados = () => {
@@ -10,35 +11,40 @@ const obtenerDaoSeleccionados = () => {
     case "mongo": {
       servicioMongoDB.init();
       return {
-        DaoProducto: new productosMongoBD(),
-        DaoMensaje: new mensajesMongoBD(),
+        DaoProducto: new ProductosMongoBD(),
+        DaoCarrito: new CarritosMongoBD(),
+        DaoMensaje: new MensajesMongoBD(),
+        DaoChat: new MensajesChat()
       };
     }
     case "filesystem": {
       return {
-        DaoProducto: new productosFileSystem(),
-        DaoMensaje: new mensajesFilesystem(),
+        DaoProducto: new ProductosFileSystem(),
+        DaoCarrito: new CarritosFilesystem(),
+        DaoMensaje: new MensajesFilesystem()
       };
     }
     case "memory": {
       return {
-        DaoProducto: new productosMemoria(),
-        DaoMensaje: new mensajesMemoria(),
+        DaoProducto: new ProductosMemoria(),
+        DaoCarrito: new CarritosMemoria(),
+        DaoMensaje: new MensajesMemoria()
       };
     }
     case "firebase": {
       conectar()
       return {
-        DaoProducto: new productosFirebase(),
-        DaoMensaje: new mensajesFirebase(),
+        DaoProducto: new ProductosFirebase(),
+        DaoCarrito: new CarritosFirebase(),
+        DaoMensaje: new MensajesFirebase()
       };
     }
   }
 };
 
-const { DaoProducto, DaoMensaje } = obtenerDaoSeleccionados();
+const { DaoProducto, DaoCarrito, DaoMensaje, DaoChat } = obtenerDaoSeleccionados();
 
-export { DaoProducto, DaoMensaje };
+export { DaoProducto, DaoCarrito, DaoMensaje, DaoChat };
 
 
 
