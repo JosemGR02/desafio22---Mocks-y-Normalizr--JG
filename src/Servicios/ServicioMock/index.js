@@ -19,20 +19,6 @@ class mockServicio {
             this.insert(crearProductosFake())
         }
     }
-    actualizar(id, nuevosdatos) {
-        const itemIndex = this.items.findIndex((item) => item.id == id);
-
-        if (itemIndex === -1) return null;
-
-        const itemEncontrado = this.items[itemIndex];
-
-        this.items[itemIndex] = {
-            ...this.items[itemIndex],
-            ...nuevosdatos,
-        };
-
-        return this.items[itemIndex];
-    }
     eliminar() {
         this.items.filter((item) => item.id != id);
         return { success: true };

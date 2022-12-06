@@ -4,7 +4,7 @@ class ContenedorFirebase {
         this.filePath = `./src/BaseDatos/${archivoNombre}.json`;
     }
 
-    async findAll(collection) {
+    async obtenerTodos(collection) {
         try {
             const documento = await collection.get()
             return documento.docs.map(doc => { return { ...doc.data(), id: doc.id } })
@@ -14,7 +14,7 @@ class ContenedorFirebase {
         }
     }
 
-    async findOne(collection, id) {
+    async obtenerXid(collection, id) {
         try {
             const documento = await collection.doc(id).get()
 
@@ -26,7 +26,7 @@ class ContenedorFirebase {
 
     }
 
-    async create(collection, datos) {
+    async guardar(collection, datos) {
         try {
             const documento = collection.doc()
 
@@ -39,7 +39,7 @@ class ContenedorFirebase {
         }
     }
 
-    async update(collection, id, datos) {
+    async actualizar(collection, id, datos) {
         try {
             const documento = collection.doc(id)
             await documento.update(datos)
@@ -51,7 +51,7 @@ class ContenedorFirebase {
         }
     }
 
-    async remove(collection, id) {
+    async eliminarXid(collection, id) {
         try {
             const documento = collection.doc(id)
             await documento.remove()

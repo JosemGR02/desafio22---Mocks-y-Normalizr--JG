@@ -44,20 +44,6 @@ rutas.post("/test/popular", (solicitud, respuesta) => {
     }
 });
 
-rutas.put("/test/:id", (solicitud, respuesta) => {
-    try {
-        const { id } = solicitud.params;
-
-        const { titulo, imagen, precio } = solicitud.body;
-
-        const productoActualizado = servicio.actualizar(id, { titulo, imagen, precio });
-
-        respuesta.send({ success: true, actualizado: productoActualizado })
-    } catch (error) {
-        respuesta.send({ error, error: errorMiddleware })
-    }
-});
-
 rutas.delete("/test/:id", (solicitud, respuesta) => {
     try {
         const { id } = solicitud.params;

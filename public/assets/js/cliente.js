@@ -1,4 +1,5 @@
 
+import { datosDesnormalizados, comprencionTotal } from "../Desnormalizacion/index.js"
 const socket = io.connect();
 
 // formularios
@@ -8,6 +9,7 @@ const mensajesForm = document.getElementById('formularioMjs')
 // contenedores
 const contenedorProds = document.getElementById('contenedorProductos')
 const contenedorChat = document.getElementById('contenedorMensajes')
+const contenedorXcentaje = document.getElementById('contenedorPorcentaje')
 
 
 
@@ -35,6 +37,14 @@ const mensajesRenderizados = async (mensajes) => {
     const template = await respuesta.text()
     const templateCompilado = Handlebars.compile(template)
     const html = templateCompilado({ mensajes })
+    contenedorChat.innerHTML = html
+}
+
+const renderMensajesDesnormalizados = async (datosDesnormalizados) => {
+    let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
+    const template = await respuesta.text()
+    const templateCompilado = Handlebars.compile(template)
+    const html = templateCompilado({ datosDesnormalizados })
     contenedorChat.innerHTML = html
 }
 
