@@ -14,11 +14,14 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 
-    <title>Desafio-clase12 - Websockets</title>
+    <title>Desafio-clase22 - Mocks y Normalizr</title>
   </head>
 
   <body>
-    <h1 class="titulo">Formulario productos</h1>
+    <h1 class="titulo">Formulario Productos</h1>
+    <h4 class="titulo">
+      Ingrese los datos correspondientes para crear el producto
+    </h4>
     <div class="nuevoProducto">
       <form id="formularioProds">
         <input
@@ -44,14 +47,14 @@
         />
         <input
           type="text"
-          name="code"
+          name="codigo"
           placeholder="Código"
           class="nuevoProd_input"
           required
         />
         <input
           type="text"
-          name="description"
+          name="descripcion"
           placeholder="Descripción"
           class="nuevoProd_input"
           required
@@ -75,7 +78,7 @@
         <!-- autor -->
         <input
           type="email"
-          name="emailForm"
+          name="idForm"
           placeholder="Email"
           id="msj_input"
           required
@@ -83,14 +86,14 @@
         <input
           type="text"
           name="nombreForm"
-          placeholder="nombre"
+          placeholder="Nombre"
           id="msj_input"
           required
         />
         <input
           type="text"
           name="apellidoForm"
-          placeholder="apellido"
+          placeholder="Apellido"
           id="msj_input"
           required
         />
@@ -115,7 +118,7 @@
           id="msj_input"
           required
         />
-        <!-- texto -->
+        <!-- mensaje -->
         <input
           type="text"
           name="msjForm"
@@ -126,7 +129,10 @@
         <button type="submit" id="msj_input">Enviar</button>
       </form>
     </div>
-    <h2 class="titulo">Mensajeria:</h2>
+    <h3 class="titulo">Comprension de mensajes:</h3>
+    <div class="Mensajeria" id="contenedorCompresion"></div>
+
+    <h2 class="titulo">Chat Mensajes:</h2>
     <div class="Mensajeria" id="contenedorMensajes"></div>
 
     <script src="/assets/js/cliente.js"></script>

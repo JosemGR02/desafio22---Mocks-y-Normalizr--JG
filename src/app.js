@@ -6,7 +6,7 @@ import { Server as ServidorIO } from "socket.io";
 import { DaoMensaje, DaoProducto, DaoCarrito, DaoChat } from "./Dao/index.js";
 import handlebars from "express-handlebars";
 import { errorMiddleware } from './Middlewares/index.js';
-import { RutaCarrito, RutaProductosTest, RutaProducto } from "./Rutas/index.js";
+import { Ruta, RutaCarrito, RutaProductosTest, RutaProducto } from "./Rutas/index.js";
 
 
 // daysjsa
@@ -41,6 +41,7 @@ app.set("views", "./views");
 
 
 //Rutas
+app.use('/api', Ruta)
 app.use('/api/productos', RutaProducto)
 app.use('/api/carrito', RutaCarrito)
 app.use('/api/productos-test', RutaProductosTest)
@@ -57,6 +58,7 @@ servidorHttp.listen(PORT, () => { console.log(`Servidor escuchando en puerto: ${
 io.on('connection', socket => {
     console.log(`usuario conectado ${socket.id}`);
     enviarTodosProds()
+    enviarPorcentajeCompresion()
     enviarTodosMsjs()
 
     socket.on('nuevo producto', nuevoProd => {
@@ -66,10 +68,15 @@ io.on('connection', socket => {
     socket.on('nuevo mensaje', nuevoMsg => {
         nuevoMensaje(socket, io, nuevoMsg)
     })
+
+    socket.on('nuevo mensaje', nuevoMsg => {
+        nuevoXcentajeCompresion(socket, io)
+    })
 })
 
 
 // enviar todos
+
 const enviarTodosProds = async (socket) => {
     const todosProds = await DaoProducto.obtenerTodos()
     io.sockets.emit('todos los productos', todosProds)
@@ -78,6 +85,10 @@ const enviarTodosProds = async (socket) => {
 const enviarTodosMsjs = async (socket) => {
     const todosMsjs = await DaoMensaje.obtenerTodos()
     io.sockets.emit('todos los mensajes', todosMsjs)
+}
+const enviarPorcentajeCompresion = async (socket) => {
+    const porcentajeCompresion = await DaoMensaje.obtenerTodos()
+    io.sockets.emit('porcentaje de compresion', porcentajeCompresion)
 }
 
 
@@ -93,7 +104,6 @@ const nuevoMensaje = async (socket, io, nuevoMsj) => {
     const todosMsjs = await DaoMensaje.obtenerTodos()
     io.sockets.emit('todos los mensajes', todosMsjs)
 }
-
 
 // nuevo producto
 

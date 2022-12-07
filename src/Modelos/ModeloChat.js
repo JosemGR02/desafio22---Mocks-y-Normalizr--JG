@@ -5,17 +5,15 @@ const ColeccionChat = "chats";
 
 const EsquemaChat = new Schema(
     {
-        author: {
+        publicaciones: {
             id: { type: String, required: true, max: 10 },
-            nombre: { type: String, required: true, max: 40 },
-            apellido: { type: String, required: true, max: 40 },
-            edad: { type: Number, required: true, max: 3 },
-            alias: { type: String, required: true, max: 30 },
-            avatar: { type: String, required: true, max: 150 },
-            texto: [{ type: Schema.Types.ObjectId, ref: 'mensajes' }]
-        },
+            timestamp: { type: String, required: true, max: 100 },
+            mensajes: [],
+        }
     }
 );
+
+// {id: 'mensajes', mensajes: []}
 
 EsquemaChat.set("toJSON", {
     transform: (_, respuesta) => {
@@ -26,4 +24,23 @@ EsquemaChat.set("toJSON", {
     },
 });
 
-export const modeloChat = { EsquemaChat, ColeccionChat }
+export const modeloChat = { EsquemaChat, ColeccionChat };
+
+
+
+// NUEVOS MENSAJES
+
+// {
+//     autor: {
+//         id: "email@445";
+//         nombre: "pepito";
+//         apellido: "martinez";
+//         edad: 34,
+//         alias: "el Pepo";
+//         avatar: "url"
+//     },
+//     texto: 'mensaje del usuario'
+// }
+
+// "publicaciones": {id: '4444', mensajes: []}
+

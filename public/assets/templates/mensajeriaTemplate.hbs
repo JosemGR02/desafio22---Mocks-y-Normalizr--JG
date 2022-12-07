@@ -1,25 +1,29 @@
 
 <div id="tablaMensajes">
-    {{#if mensajes.length}}
-        {{#each mensajes}}
-        <div class="Mensajeria">
-            {{!-- <p>{{ this.msj.emailForm }}</p>
-            <p>{{ this.msj.msjForm }}</p>
-            <p>{{ this.createDate }}</p> --}}
+    {{#if datosDesnormalizados.length}}
+        {{#each datosDesnormalizados}}
+            <div class="Mensajeria">
+                {{!-- <p>{{ this.msj.emailForm }}</p>
+                <p>{{ this.msj.msjForm }}</p>
+                <p>{{ this.createDate }}</p> --}}
 
-            {{#if autor.length}}
-                {{#each autor}}
-                    <p>{{ this.id }}</p>
-                    <p>{{ this.nombre }}</p>
-                    <p>{{ this.apellido }}</p>
-                    <p>{{ this.edad }}</p>
-                    <p>{{ this.alias }}</p>
-                    <p>{{ this.avatar }}</p>
-            {{#if texto.length}}
-                <p>{{ this.texto }}</p>
-            <p>{{ this.createDate }}</p>
-        </div>
+                <p>{{ this.idForm }}</p>
+                <p>{{ this.nombreForm }}</p>
+                <p>{{ this.apellidoForm }}</p>
+                <p>{{ this.edadForm }}</p>
+                <p>{{ this.aliasForm }}</p>
+                <p>{{ this.avatarForm }}</p>
+                
+                {{#if msjForm.length}}
+                    <p>{{ this.msjForm }}</p>
+                <p>{{ this.createDate }}</p>
+            </div>
         {{/each}}
+    {{/if}}
+</div>
+<div id="contenedorCompresion">
+    {{#if comprensionTotal.length}}
+        <p>% {{ this.comprensionTotal }}</p>
     {{/if}}
 </div>
 

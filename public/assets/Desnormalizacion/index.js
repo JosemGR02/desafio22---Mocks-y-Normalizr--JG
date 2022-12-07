@@ -20,25 +20,7 @@ function obtenerPorcentaje(primerElemento, segundoElemento) {
     console.log(`El porcentaje de compresion fue del ${porcentaje}%`);
 }
 
-const comprencionTotal = obtenerPorcentaje(elementoNormal, elementOriginal);
+const comprensionTotal = obtenerPorcentaje(elementoNormal, elementOriginal);
 
 
-export { datosDesnormalizados, comprencionTotal };
-
-
-
-// --------------------------------------------------------------------------------------------------//
-
-
-// const mostrar = (objeto) => {
-//     console.log(util.inspect(objeto, false, 12, true));
-// };
-
-
-// mostrar(holdingNormalizado);
-
-
-
-
-// --------------------------------------------------------------------------------------------------//
-
+export { datosDesnormalizados, comprensionTotal };

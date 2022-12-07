@@ -1,5 +1,5 @@
 
-import { datosDesnormalizados, comprencionTotal } from "../Desnormalizacion/index.js"
+import { datosDesnormalizados, comprensionTotal } from "../Desnormalizacion/index.js"
 const socket = io.connect();
 
 // formularios
@@ -9,7 +9,7 @@ const mensajesForm = document.getElementById('formularioMjs')
 // contenedores
 const contenedorProds = document.getElementById('contenedorProductos')
 const contenedorChat = document.getElementById('contenedorMensajes')
-const contenedorXcentaje = document.getElementById('contenedorPorcentaje')
+const contenedorXcentaje = document.getElementById('contenedorCompresion')
 
 
 
@@ -32,13 +32,13 @@ const limpiarChat = () => {
     contenedorChat.innerHTML = ""
 }
 
-const mensajesRenderizados = async (mensajes) => {
-    let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
-    const template = await respuesta.text()
-    const templateCompilado = Handlebars.compile(template)
-    const html = templateCompilado({ mensajes })
-    contenedorChat.innerHTML = html
-}
+// const mensajesRenderizados = async (mensajes) => {
+//     let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
+//     const template = await respuesta.text()
+//     const templateCompilado = Handlebars.compile(template)
+//     const html = templateCompilado({ mensajes })
+//     contenedorChat.innerHTML = html
+// }
 
 const renderMensajesDesnormalizados = async (datosDesnormalizados) => {
     let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
@@ -46,6 +46,14 @@ const renderMensajesDesnormalizados = async (datosDesnormalizados) => {
     const templateCompilado = Handlebars.compile(template)
     const html = templateCompilado({ datosDesnormalizados })
     contenedorChat.innerHTML = html
+}
+
+const renderComprensionMensajes = async (comprensionTotal) => {
+    let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
+    const template = await respuesta.text()
+    const templateCompilado = Handlebars.compile(template)
+    const html = templateCompilado({ comprensionTotal })
+    contenedorXcentaje.innerHTML = html
 }
 
 
@@ -71,7 +79,6 @@ mensajesForm.addEventListener('submit', (evento) => {
     socket.emit('nuevo mensaje', valoresformulario);
 })
 
-
 // EVENTOS
 
 // Eventos Productos
@@ -82,10 +89,20 @@ socket.on('todos los productos', todosProds => {
 })
 
 
+// // Eventos mensajeria
+// socket.on('todos los mensajes', todosMsgs => {
+//     mensajes = todosMsgs
+//     limpiarChat()
+//     mensajesRenderizados(todosMsgs)
+// })
+
+
 // Eventos mensajeria
 socket.on('todos los mensajes', todosMsgs => {
-    mensajes = todosMsgs
+    datosDesnormalizados = todosMsgs
+    comprensionTotal = porcentajeCompresion
     limpiarChat()
-    mensajesRenderizados(todosMsgs)
+    renderMensajesDesnormalizados(todosMsgs)
+    renderComprensionMensajes(porcentajeCompresion)
 })
 
