@@ -41,3 +41,31 @@ export { datosNormalizados };
 
 
 
+// import { normalize, schema, denormalize } from 'normalizr';
+
+// const autorSchema = new schema.Entity('autor');
+// const textoSchema = new schema.Entity('autor', {
+//     autor: autor
+// });
+
+// function normalizar(mensajes) {
+//     const normalizar = mensajes.map((msj) => ({
+//         autor: msj.autor,
+//         fecha: msj.fecha,
+//         autor: msj.texto,
+//         id: msj.id,
+//     }));
+
+//     const normalizados = normalize(
+//         { id: 'mensajes', mensajes: normalizar },
+//         texto
+//     );
+
+//     return normalizados
+// }
+
+// const denormalizar = (obj) => {
+//     return denormalize(obj.result, texto, obj.entities)
+// }
+
+// export { normalizar, denormalizar };
