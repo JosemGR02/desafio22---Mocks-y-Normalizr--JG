@@ -32,21 +32,14 @@ const limpiarChat = () => {
     contenedorChat.innerHTML = ""
 }
 
-// const mensajesRenderizados = async (mensajes) => {
-//     let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
-//     const template = await respuesta.text()
-//     const templateCompilado = Handlebars.compile(template)
-//     const html = templateCompilado({ mensajes })
-//     contenedorChat.innerHTML = html
-// }
-
-const renderMensajesDesnormalizados = async (datosDesnormalizados) => {
+const mensajesRenderizados = async (MensajesDenormalizados) => {
     let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
     const template = await respuesta.text()
     const templateCompilado = Handlebars.compile(template)
-    const html = templateCompilado({ datosDesnormalizados })
+    const html = templateCompilado({ MensajesDenormalizados })
     contenedorChat.innerHTML = html
 }
+
 
 const renderComprensionMensajes = async (comprensionTotal) => {
     let respuesta = await fetch('/assets/templates/mensajeriaTemplate.hbs');
@@ -89,20 +82,20 @@ socket.on('todos los productos', todosProds => {
 })
 
 
-// // Eventos mensajeria
-// socket.on('todos los mensajes', todosMsgs => {
-//     mensajes = todosMsgs
-//     limpiarChat()
-//     mensajesRenderizados(todosMsgs)
-// })
+// Eventos mensajeria
+socket.on('todos los mensajes', todosMsgs => {
+    mensajes = todosMsgs
+    limpiarChat()
+    mensajesRenderizados(todosMsgs)
+})
 
 
 // Eventos mensajeria
-socket.on('todos los mensajes', todosMsgs => {
-    datosDesnormalizados = todosMsgs
+socket.on('todos los mensajes', todosMsgs, porcentajeCompresion => {
+    mensajes = todosMsgs
     comprensionTotal = porcentajeCompresion
     limpiarChat()
-    renderMensajesDesnormalizados(todosMsgs)
+    mensajesRenderizados(todosMsgs)
     renderComprensionMensajes(porcentajeCompresion)
 })
 

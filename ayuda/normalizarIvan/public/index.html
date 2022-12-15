@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang='es'>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Productos</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div>
+        <div class="container bg-light p-4">
+
+            <section>
+                <h2 class="text-primary">Ingrese producto</h2>
+                <form onsubmit="return addProduct(this)">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="producto">Producto</label>
+                        <input class="form-control" id="producto" name="producto">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="precio">Precio</label>
+                        <input class="form-control" id="precio" type="number" name="precio">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="urlImagen">Url Imagen</label>
+                        <input class="form-control" id="urlImagen" type="text" name="urlImagen">
+                    </div>
+                    <div class="col-12">
+                        <input class="btn btn-success" type="submit" value="Enviar">
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <table class="table table-dark container bg-light p-4">
+            <thead>
+                <tr class="text-warning">
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>
+            <tbody id="productos">
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2 class="container" >Chat Online</h2>
+
+        <div id="messages" class="container bg-light p-4 shadow border border-secondary"></div>
+
+        <form onsubmit="return addMessage(this)">
+
+            <div class="mt-3 container bg-black ">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="email" class="form-control text-primary" required id="username"
+                    placeholder="Ingrese su mail">
+            </div>
+            <div class=" container bg-black ">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="text" class="form-control text-primary" required id="nombre"
+                    placeholder="Ingrese su nombre">
+            </div>
+            <div class=" container bg-black ">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="text" class="form-control text-primary" required id="apellido"
+                    placeholder="Ingrese su apellido">
+            </div>
+            <div class=" container bg-black ">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="number" class="form-control text-primary" required id="edad"
+                    placeholder="Ingrese su edad">
+            </div>
+            <div class=" container bg-black ">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="text" class="form-control text-primary" required id="alias"
+                    placeholder="Ingrese su alias">
+            </div>
+            <div class=" container bg-black ">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="text" class="form-control text-primary" required id="urlLogo"
+                    placeholder="Ingrese su urlavatar">
+            </div>
+            <div class="mb-3 container bg-black ">
+                <label for="exampleFormControlTextarea1" class="form-label"></label>
+                <textarea class="form-control" placeholder="Mensaje" id="text" rows="3"></textarea>
+                <div class="d-flex justify-content-end">
+                    <input type="submit" class="btn btn-primary m-2 " value="Enviar">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./main.js"></script>
+
+</body>
+
+</html>

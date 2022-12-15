@@ -13,8 +13,6 @@ const EsquemaChat = new Schema(
     }
 );
 
-// {id: 'mensajes', mensajes: []}
-
 EsquemaChat.set("toJSON", {
     transform: (_, respuesta) => {
         respuesta.id = respuesta._id;

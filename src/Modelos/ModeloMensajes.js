@@ -29,6 +29,3 @@ EsquemaMensajes.set("toJSON", {
 
 export const modeloMensajes = { EsquemaMensajes, ColeccionMensajes };
 
-
-// id: { type: String, required: true, max: 10 },
-// texto: { type: String, required: true, max: 200 },
