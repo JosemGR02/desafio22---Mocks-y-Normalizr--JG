@@ -10,7 +10,9 @@ const ObtenerMensajes = async (solicitud, respuesta) => {
         if (!mensajes) {
             return respuesta.send({ error: ERRORES_UTILS.MESSAGES.ERROR_MENSAJES });
         }
-        respuesta.send({ success: true, mensaje: mensajes });
+        const obtenerMsj = await mensajes.json();
+        respuesta.send({ success: true });
+        return obtenerMsj
     } catch (error) {
         respuesta.send({ error, error: "Error al obtener los mensajes solicitados" })
     }
@@ -29,7 +31,6 @@ const CrearMensaje = async (solicitud, respuesta) => {
         const mensajeCreado = await DaoMensaje.guardar(nuevoMensaje);
 
         respuesta.send({ success: true, mensaje: mensajeCreado });
-        return mensajeCreado
     } catch (error) {
         await LOGGER_UTILS.addLog(error);
         respuesta.send({ error, error: "Error al crear el mensaje solicitado" })

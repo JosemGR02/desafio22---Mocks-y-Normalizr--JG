@@ -1,12 +1,11 @@
 
 // NORMALIZAR
-
 import { normalize, schema, denormalize } from 'normalizr';
-// import { mensajes } from '../../Controladores/ControladorMensajes/index.js';
 import { mensajes } from '../../BaseDatos/mensajes.json';
 import util from 'util';
+import { obtenerMsj } from '../../Controladores/ControladorMensajes/index.js';
 
-const jsonMensajes = mensajes;
+const jsonMensajes = obtenerMsj;
 
 // const messages = await chat.getMessages();
 // de aca entiendo que estaria hablando de un DaoMensaje y/o contenedor de mensajes y utilizando un ruta para obtener todos (mensajes) utilizando postman, tendria que hacer algo asi?

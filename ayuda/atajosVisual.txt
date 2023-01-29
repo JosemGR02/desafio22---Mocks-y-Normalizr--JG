@@ -1,0 +1,120 @@
+
+
+Ctrl + z = deshacer
+
+Ctrl + y = rehacer
+
+Ctrl + } = comentar 1 linea o mas de codigo
+
+Ctrl + x = eliminar un linea de codigo
+
+Ctrl + d = seleccionar mismo nombre
+
+Ctrl + b = abre/cierra barra izquierda editores / minimizar la parte del explorer
+
+Ctrl + o = Abrir archivo
+
+Ctrl + n = crear nuevo archivo
+
+Ctrl + k + o = Abrir carpeta
+
+Ctrl + h = remplazar palabra/palabras 
+
+Ctrl + l = comentar toda la linea 
+
+Ctrl + c (x2) = atajo a Deepl (traductor)
+
+Ctrl + Mayus + "> <" = copiar linea y pegar -abajo (solo tocando una linea de codigo), -al lado (comentando la/las linea/as de codigo)
+
+Ctrl + Mayus + w = cerrar visual studio 
+
+Ctrl + w = cerrar ventana archivo visual 
+
+Ctrl + a = seleccionar todo 
+
+
+Alt + flecha arriba/abajo = mueve la linea de codigo arriba/abajo
+
+Alt + Mayus + flecha abajo = para hacer una copia de esa linea de codigo
+
+F11 = Pantalla completa
+
+Abrir paleta de comandos: CTRL + SHIFT + P
+Abrir explorador de archivos: CTRL + SHIFT + E
+Acceder a extensiones (instaladas y para instalar): CTRL + SHIFT + X
+Debug: CTRL + SHIFT + D
+Corte de palabras (Word Wrap): ALT + Z
+Abrir terminal integrado: CTRL + SHIFT + Ñ
+Ver/editar atajos de teclado: CTRL + K+ CTRL + S
+Ordenar el codigo: Shift + Alt + F
+
+
+
+/*------------------------------------------------------------------------------------------------------------------*/
+/*                                               IMPORTS                                                            */
+/*------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+
+                                        framework de programación:
+
+                                        Laravel
+
+                                        https://laravel.com/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+
+                                        HOST PAGINA FROND END:
+
+                                        Netlify
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+
+                                        HOST SERVIDOR BACK END:
+
+                                        Heroku
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+
+                                        Encuentra el trabajo
+
+                                        Glassdor
+
+                                        https://www.glassdoor.com/index.htm
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+                                        Curriculum Vitale
+
+                                        https://www.youtube.com/watch?v=9klfcNgX0VI
+
+/*------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+Redis
+puerto: 6379
+
+clase24
+https://docs.google.com/presentation/d/1B2G4mLToIxlNE9_gjV0S4_p3rxfxjmxBvcWDogWtI5g/preview?slide=id.ged77f6d7ec_0_1250
+
+clase22
+https://docs.google.com/presentation/d/1_wdT9ibN-bnTJXXk5J5ZQZUnTwRl6BPJPYI3QgbM6UM/preview?slide=id.geb91f962fb_0_854
+
+
+
+https://github.com/ivanlcr94/CoderHouseBackend/tree/main/Clase_24_Cookies_Sesiones_Storages_Parte_2/desafio
+
+https://github.com/Lautallarico/TareasBackend/tree/main/desafio12%20-%20Persistir%20datos%20de%20session%20en%20mongo%20atlas
+
+'mongodb+srv://admin:admin@cluster0.ddkqi7v.mongodb.net/test'
